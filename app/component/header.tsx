@@ -90,7 +90,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
             <input
               type="text"
               placeholder="Что нужно сделать?"
-              className="w-[100%] flex-grow bg-transparent outline-none px-4 placeholder:text-[10px] placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?'"
+              className="w-[100%] flex-grow bg-transparent outline-none px-4  placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?'"
             />
             <button className="w-[48px] h-full  rounded-[5px] bg-[#134E9B] text-[#FFFFFF] text-[14px] flex items-center justify-center">
              <FaSearch/>
