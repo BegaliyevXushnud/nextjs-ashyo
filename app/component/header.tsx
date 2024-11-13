@@ -82,17 +82,17 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
                 <FaBars className='resp2 w-[24px] h-[24px]' />
 
                 <div className='resp3   w-[70%] flex items-center justify-between gap-2 '>
-                <button onClick={toggleCategoryMenu} className='w-[20%] h-[48px] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[12px] font-sans flex items-center justify-center gap-4 xl:text-[16px] '>
+                <button onClick={toggleCategoryMenu} className='w-[20%] h-[48px] rounded-[5px] bg-[#134E9B] text-[#FFFFFF] text-[12px] font-sans flex items-center justify-center gap-4 xl:text-[16px] '>
                     Kategorya
                     <FaChevronDown className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
                 </button>
-                <div className=" w-[80%] h-[48px] flex items-center rounded-[3px] bg-[#EBEFF3] justify-between ">
+                <div className=" w-[80%] h-[48px] flex items-center rounded-[5px] bg-[#EBEFF3] justify-between ">
             <input
               type="text"
               placeholder="Что нужно сделать?"
               className="w-[100%] flex-grow bg-transparent outline-none px-4 placeholder:text-[10px] placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?'"
             />
-            <button className="w-[48px] h-full  rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[14px] flex items-center justify-center">
+            <button className="w-[48px] h-full  rounded-[5px] bg-[#134E9B] text-[#FFFFFF] text-[14px] flex items-center justify-center">
              <FaSearch/>
             </button>
           </div>
@@ -129,11 +129,11 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
     </div>
             </div>
             <div className='resp4 flex items-center gap-2 p-2 '>
-                <button onClick={toggleCategoryMenu} className='w-[30%] h-[40px] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[12px] font-sans flex items-center justify-center gap-4 '>
+                <button onClick={toggleCategoryMenu} className='w-[30%] h-[40px] xl:w-[15%] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[12px] font-sans flex items-center justify-center gap-4 xl:text-[15px]'>
                     Kategorya
                     <FaChevronDown className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
                 </button>
-                <div className='w-[70%] flex'>
+                <div className='w-[70%] flex xl:w-[85%]'>
                     <input type="text" className='w-[100%] bg-[#EBEFF3] placeholder:text-[10px] placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?' />
                     <button className='w-[40px] h-[40px] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[14px] flex items-center justify-center'>
                         <FaSearch />
