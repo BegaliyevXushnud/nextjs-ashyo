@@ -15,8 +15,8 @@ import { FaBars, FaChevronDown, FaSearch,FaBalanceScale, FaHeart, FaShoppingBag,
 import { useState } from 'react'
 import "../cssfolder/header.css"
 const header = () => {
-    const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
-const [selectedCategory, setSelectedCategory] = useState<string>("Smartfonlar va Aksessuarlar");
+    const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessuarlar");
 
 
     const toggleCategoryMenu = () => {
