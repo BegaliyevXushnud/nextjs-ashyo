@@ -73,7 +73,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
            </div>
             </div>
             <div className=' flex items-center justify-between p-2 2xl:p-0 ' >
-                <div className='flex gap-1 items-center p-2'>
+                <div className='flex gap-1 items-center '>
                     <Image src={headerlogo} priority alt='ashyo' className='w-[48px] h-[48px]' />
                     <Image src={headertextimg} priority alt='ashyotext'  className='w-[102px] h-[42px]'/>
                 </div>
