@@ -13,14 +13,14 @@
 
 @media (min-width: 640px) {
     .resp2 {
-        display: none ; 
+        display: none !important; 
     }
 }
 .resp3 {
    display: block;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1450px) {
     .resp3 {
         display: none !important;
     }
@@ -31,7 +31,7 @@
     display: none !important;
  }
  
- @media (max-width: 1020px) {
+ @media (max-width: 1450px) {
      .resp4 {
         display: flex !important;
         

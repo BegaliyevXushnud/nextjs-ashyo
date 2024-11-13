@@ -22,7 +22,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
     const toggleCategoryMenu = () => {
         setIsCategoryOpen(!isCategoryOpen)
 
-        // Set default category when opening the menu
+        
         if (!isCategoryOpen) {
             setSelectedCategory("Smartfonlar va Aksessuarlar")
         }
@@ -51,8 +51,8 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
     }
 
     return (
-        <div className='w-full flex flex-col  gap-3'>
-            <div className='resp  w-full h-[40px] bg-[#EBEFF3] flex items-center justify-between p-2'>
+        <div className='w-full flex flex-col  '>
+            <div className='resp  w-full h-[40px] bg-[#EBEFF3] flex items-center justify-between p-7'>
             <div className='flex gap-5'>
               <div className='flex gap-3'> 
               <Image src={locationicon} alt='location icon'/>
@@ -72,27 +72,32 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
            </button>
            </div>
             </div>
-            <div className=' flex items-center justify-between p-2'>
-                <div className='flex gap-1'>
-                    <Image src={headerlogo} priority alt='ashyo' />
-                    <Image src={headertextimg} priority alt='ashyotext' />
+            <div className=' flex items-center justify-between  ' >
+                <div className='flex gap-1 items-center p-2'>
+                    <Image src={headerlogo} priority alt='ashyo' className='w-[48px] h-[48px]' />
+                    <Image src={headertextimg} priority alt='ashyotext'  className='w-[102px] h-[42px]'/>
                 </div>
                 
                 <h2 className='resp2 text-[14px] mr-4 text-[#203F68] leading-[18px] font-sans font-semibold '>+998 (71) 123-45-67</h2>
                 <FaBars className='resp2 w-[24px] h-[24px]' />
-                <div className='resp3  w-[70%] flex items-center gap-2 p-2'>
-                <button onClick={toggleCategoryMenu} className='w-[30%] h-[40px] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[12px] font-sans flex items-center justify-center gap-4 '>
+
+                <div className='resp3   w-[70%] flex items-center justify-between gap-2 '>
+                <button onClick={toggleCategoryMenu} className='w-[20%] h-[48px] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[12px] font-sans flex items-center justify-center gap-4 xl:text-[16px] '>
                     Kategorya
                     <FaChevronDown className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
                 </button>
-                <div className='w-[70%] flex'>
-                    <input type="text" className='w-[100%] bg-[#EBEFF3] placeholder:text-[10px] placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?' />
-                    <button className='w-[40px] h-[40px] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[14px] flex items-center justify-center'>
-                        <FaSearch />
-                    </button>
-                </div>
+                <div className=" w-[80%] h-[48px] flex items-center rounded-[3px] bg-[#EBEFF3] justify-between ">
+            <input
+              type="text"
+              placeholder="Что нужно сделать?"
+              className="w-[100%] flex-grow bg-transparent outline-none px-4 placeholder:text-[10px] placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?'"
+            />
+            <button className="w-[48px] h-full  rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[14px] flex items-center justify-center">
+             <FaSearch/>
+            </button>
+          </div>
             </div>
-                <div className="resp flex gap-4">
+                <div className="resp flex gap-[15px] p-5 ">
              
       <div className="relative p-4 bg-[#EBEFF3] rounded-lg">
       <FaBalanceScale className="w-6 h-6 text-gray-600" />
@@ -123,7 +128,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
       </div>
     </div>
             </div>
-            <div className='resp4 flex items-center gap-2 p-2'>
+            <div className='resp4 flex items-center gap-2 p-2 '>
                 <button onClick={toggleCategoryMenu} className='w-[30%] h-[40px] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[12px] font-sans flex items-center justify-center gap-4 '>
                     Kategorya
                     <FaChevronDown className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
