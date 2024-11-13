@@ -14,7 +14,7 @@ import Image from 'next/image'
 import { FaBars, FaChevronDown, FaSearch,FaBalanceScale, FaHeart, FaShoppingBag, FaUser } from 'react-icons/fa'
 import { useState } from 'react'
 import "../cssfolder/header.css"
-const header = () => {
+const Header = () => {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessuarlar");
 
@@ -178,4 +178,4 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
     )
 }
 
-export default header
+export default Header
