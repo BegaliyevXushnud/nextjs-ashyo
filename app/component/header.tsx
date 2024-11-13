@@ -156,11 +156,11 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
                         <div className="w-3/4 pl-8 bg-white">
                             {selectedCategory && rightMenuContent[selectedCategory] ? (
                                 <div className="grid grid-cols-2 gap-8">
-                                    {rightMenuContent[selectedCategory].map((section:any, idx:any) => (
+                                    {rightMenuContent[selectedCategory].map((section, idx) => (
                                         <div key={idx}>
                                             <h3 className="text-lg font-semibold text-gray-800">{section.title}</h3>
                                             <ul className="mt-2 space-y-2 text-gray-600">
-                                                {section.items.map((item:any, idx:any) => (
+                                                {section.items.map((item, idx) => (
                                                     <li key={idx}>{item}</li>
                                                 ))}
                                             </ul>
