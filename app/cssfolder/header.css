@@ -1,0 +1,40 @@
+.resp {
+    display: block;
+}
+
+@media (max-width: 640px) {
+    .resp {
+        display: none !important; 
+    }
+}
+.resp2 {
+    display: block ; 
+}
+
+@media (min-width: 640px) {
+    .resp2 {
+        display: none ; 
+    }
+}
+.resp3 {
+   display: block;
+}
+
+@media (max-width: 1000px) {
+    .resp3 {
+        display: none !important;
+    }
+}
+
+
+.resp4 {
+    display: none !important;
+ }
+ 
+ @media (max-width: 1020px) {
+     .resp4 {
+        display: flex !important;
+        
+     }
+ }
+

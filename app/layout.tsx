@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Header from "./component/header"
+import Footer from "./component/footer"
 import "./globals.css";
 
 const geistSans = localFont({
@@ -28,7 +30,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+       <div className="flex h-screen flex-col items-center justify-between">
+       <Header/>
+        <main>
         {children}
+        </main>
+        <Footer/>
+       </div>
       </body>
     </html>
   );
