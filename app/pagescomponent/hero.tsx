@@ -11,7 +11,7 @@ const HomePage = () => {
   ];
 
   return (
-    <div className='flex z-0'>
+    <div className='flex z-1'>
       
       <Carousel images={imageArray} />
     </div>
