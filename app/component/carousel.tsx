@@ -31,22 +31,23 @@ const Carousel: React.FC<CarouselProps> = ({ images = [] }) => {
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {images.map((image, index) => (
-            <div key={index} className="min-w-full h-[200px]  ">
-             
-             <div className='flex flex-col p-3 mt-5'>
-             <h1 className='text-[17px] text-[#203F68] leading-[26px] font-sans'>Siz kutgan Xiaomi 12 Mi Laite</h1>
-             <h3 className='text-[#203F6899] text-[8px] leading-[12px] font-sans w-[60%]'>Orginallik va qulay narxni o'zida jamlagan   siz uchun eng yaxshi arziydigan takliflarimizdan biridir!ii</h3>
-             </div>
-                <div className='flex justify-between mb-5'>
-                <button>dezs</button> 
-             
-             <Image
-               src={image}
-               alt={`Slide ${index}`}
-               className="w-[192px] h-auto object-cover"
-             
-             />
-                </div>
+            <div key={index} className="min-w-full h-[200px]">
+              <div className='flex flex-col p-3 mt-5'>
+                <h1 className='text-[17px] text-[#203F68] leading-[26px] font-sans'>
+                  Siz kutgan Xiaomi 12 Mi Laite
+                </h1>
+                <h3 className='text-[#203F6899] text-[8px] leading-[12px] font-sans w-[60%]'>
+                  Orginallik va qulay narxni o&apos;zida jamlagan siz uchun eng yaxshi arziydigan takliflarimizdan biridir!
+                </h3>
+              </div>
+              <div className='flex justify-between mb-5'>
+                <button>Dezs</button> 
+                <Image
+                  src={image}
+                  alt={`Slide ${index}`}
+                  className="w-[192px] h-auto object-cover"
+                />
+              </div>
             </div>
           ))}
         </div>
