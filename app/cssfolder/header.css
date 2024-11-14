@@ -7,6 +7,15 @@
         display: none !important; 
     }
 }
+.respp {
+    display: block;
+}
+
+@media (max-width: 1020px) {
+    .respp {
+        display: none !important; 
+    }
+}
 .resp2 {
     display: block ; 
 }
@@ -16,11 +25,28 @@
         display: none !important; 
     }
 }
+
+
+
+.resp22 {
+    display: block ; 
+    
+}
+
+@media (min-width: 1015px) {
+    .resp22 {
+        display: none !important; 
+    }
+}
+
+
+
+
 .resp3 {
    display: block;
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1020px) {
     .resp3 {
         display: none !important;
     }
@@ -31,10 +57,21 @@
     display: none !important;
  }
  
- @media (max-width: 1350px) {
+ @media (max-width: 1020px) {
      .resp4 {
         display: flex !important;
         
      }
  }
 
+ .resp5 {
+    display: none !important;
+ }
+ 
+ @media (min-width: 1020px) {
+     .resp5 {
+        display: flex !important;
+       
+        
+     }
+ }

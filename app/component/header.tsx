@@ -11,11 +11,12 @@ import kiryuvishmashinasicon from '../../public/kiryuvishicon.svg'
 import aksiyaicon from '../../public/aksyaicon.svg'
 import locationicon from '../../public/location.svg'
 import Image from 'next/image'
-import { FaBars, FaChevronDown, FaSearch,FaBalanceScale, FaHeart, FaShoppingBag, FaUser } from 'react-icons/fa'
+import { FaBars,FaTimes , FaChevronDown, FaSearch,FaBalanceScale, FaHeart, FaShoppingBag, FaUser } from 'react-icons/fa'
 import { useState } from 'react'
 import "../cssfolder/header.css"
 const Header = () => {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessuarlar");
 
 
@@ -27,6 +28,10 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
             setSelectedCategory("Smartfonlar va Aksessuarlar")
         }
     }
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen); 
+       
+    };
 
     const leftMenuCategories = [
         { icon: aksiyaicon, label: 'Aktsiyalar' },
@@ -37,7 +42,20 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
         { icon: notebookicon, label: 'Kompyuter va jihozlar' },
         { icon: muzlatgichicon, label: 'Muzlatgichlar' },
         { icon: changyutgichicon, label: 'Chang yutgichlar' },
-    ]
+    ];
+    // data.js
+ const headercategories = [
+    "Aksiyalar",
+    "Smartfonlar",
+    "Noutbooklar",
+    "Kondetsionerlar",
+    "Telivizorlar",
+    "Muzlatgichlar",
+    "Kiryuvish mashinalari",
+    "Telivizorlar",
+    "mashinalari",
+  ];
+  
     type CategoryContent = {
         title: string;
         items: string[];
@@ -52,8 +70,8 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
 
     return (
         <div className='w-full flex flex-col  '>
-            <div className='resp  w-full h-[40px] bg-[#EBEFF3] flex items-center justify-between p-7'>
-            <div className='flex gap-5'>
+            <div className='resp  w-full h-[40px] bg-[#EBEFF3] flex items-center justify-between p-5'>
+            <div className='flex gap-6'>
               <div className='flex gap-3'> 
               <Image src={locationicon} alt='location icon'/>
               <h2 className='text-[#545D6A] text-[14px] leading-[16px] font-thin'>Tashkent</h2>
@@ -64,7 +82,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
                 <h2 className='text-[#545D6A] text-[14px] leading-[18px] font-thin'>Contacts </h2>
               </div>
             </div>
-           <div className='flex items-center'>
+           <div className='flex items-center gap-5'>
            <h2 className='text-[14px] mr-4 text-[#203F68] leading-[18px] font-sans font-semibold '>+998 (71) 123-45-67</h2>
            <button className=' flex items-center gap-2 text-[#545D6A] text-[14px] font-sans '>
             Uz
@@ -72,16 +90,17 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
            </button>
            </div>
             </div>
-            <div className=' flex items-center justify-between p-2 2xl:p-0 ' >
+            
+            <div className=' flex items-center justify-between  p-3' >
                 <div className='flex gap-1 items-center '>
-                    <Image src={headerlogo} priority alt='ashyo' className='w-[48px] h-[48px]' />
-                    <Image src={headertextimg} priority alt='ashyotext'  className='w-[102px] h-[42px]'/>
+                    <Image src={headerlogo} priority alt='ashyo' className='xl:w-[48px] h-[48px]' />
+                    <Image src={headertextimg} priority alt='ashyotext'  className='xl:w-[112px] h-[42px]'/>
                 </div>
                 
                 <h2 className='resp2 text-[14px] mr-4 text-[#203F68] leading-[18px] font-sans font-semibold '>+998 (71) 123-45-67</h2>
-                <FaBars className='resp2 w-[24px] h-[24px]' />
+                
 
-                <div className='resp3   w-[70%] flex items-center justify-between gap-2 '>
+                <div className='resp3 lg:w-[56%]  xl:w-[62%] 2xl:w-[] flex items-center justify-between gap-2 '>
                 <button onClick={toggleCategoryMenu} className='w-[20%] h-[48px] rounded-[5px] bg-[#134E9B] text-[#FFFFFF] text-[12px] font-sans flex items-center justify-center gap-4 xl:text-[16px] '>
                     Kategorya
                     <FaChevronDown className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
@@ -92,22 +111,23 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
               placeholder="Что нужно сделать?"
               className="w-[100%] flex-grow bg-transparent outline-none px-4  placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?'"
             />
-            <button className="w-[48px] h-full  rounded-[5px] bg-[#134E9B] text-[#FFFFFF] text-[14px] flex items-center justify-center">
+            <button className="w-[48px] h-full  rounded-[5px] bg-[#134E9B] text-[#FFFFFF] text-[16px] flex items-center justify-center">
              <FaSearch/>
             </button>
           </div>
             </div>
-                <div className="resp flex gap-[15px] p-5 ">
+           
+                <div className="respp flex gap-[16px] p-0  ">
              
       <div className="relative p-4 bg-[#EBEFF3] rounded-lg">
       <FaBalanceScale className="w-6 h-6 text-gray-600" />
-      <span className="absolute top-[-8px] right-[-8px] bg-red-500 text-white text-xs rounded-full w-[20px] h-[20px] flex items-center justify-center">
+      <span className="absolute top-[-10px] right-[-8px] bg-red-500 text-white text-xs rounded-full w-[20px] h-[20px] flex items-center justify-center">
         2
       </span>
     </div>
       <div className="relative p-4 bg-[#EBEFF3] rounded-lg">
       <FaHeart className="w-6 h-6 text-gray-600" />
-      <span className="absolute top-[-8px] right-[-8px] bg-red-500 text-white text-xs rounded-full w-[20px] h-[20px] flex items-center justify-center">
+      <span className="absolute top-[-10px]  right-[-8px] bg-red-500 text-white text-xs rounded-full w-[20px] h-[20px] flex items-center justify-center">
         11
       </span>
     </div>
@@ -116,7 +136,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
       {/* Icon 3 */}
       <div className="relative p-4 bg-[#EBEFF3] rounded-lg">
       <FaShoppingBag className="w-6 h-6 text-gray-600" />
-      <span className=" absolute top-[-8px] right-[-8px] bg-red-500 text-white text-xs rounded-full w-[20px] h-[20px] flex items-center justify-center">
+      <span className=" absolute top-[-10px]  right-[-8px] bg-red-500 text-white text-xs rounded-full w-[20px] h-[20px] flex items-center justify-center">
         7
       </span>
     </div>
@@ -127,8 +147,14 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
 
       </div>
     </div>
+    <FaBars className='resp22 w-[24px] h-[24px]' onClick={toggleMenu} />
             </div>
-            <div className='resp4 flex items-center gap-2 p-2 '>
+            <div className="resp5 w-full p-3  justify-between  text-[#545D6A] font-sans leading-[21px] ">
+      {headercategories.map((category, index) => (
+        <h2 key={index} className='xl:text-[17px] lg:text-[13px] ' >{category}</h2>
+      ))}
+    </div>
+            <div className='resp4 flex items-center gap-2 '>
                 <button onClick={toggleCategoryMenu} className='w-[30%] h-[40px] xl:w-[15%] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[12px] font-sans flex items-center justify-center gap-4 xl:text-[15px]'>
                     Kategorya
                     <FaChevronDown className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
@@ -145,10 +171,10 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
                     <div className="top-16 left-0 w-full shadow-lg flex">
                         {/* Left menu */}
                         <div className="w-2/4 bg-[#EBEFF3] ">
-                            <ul className="space-y-6">
+                            <ul className="space-y-6 p-1 xl:p-5">
                                 {leftMenuCategories.map((category, index) => (
                                     <li key={index}
-                                        className={`flex items-center space-x-2 p-2 cursor-pointer ${selectedCategory === category.label ? 'bg-white text-gray-700 ml-[2px]' : 'text-gray-700'}`}
+                                        className={`flex items-center space-x-2 p-2 cursor-pointer xl:text-[20px] ${selectedCategory === category.label ? 'bg-white text-gray-700 ml-[2px]' : 'text-gray-700'}`}
                                         onClick={() => setSelectedCategory(category.label)}>
                                         <Image src={category.icon} alt={`${category.label} icon`} />
                                         <span>{category.label}</span>
@@ -158,13 +184,13 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
                         </div>
 
                         {/* Right menu */}
-                        <div className="w-3/4 pl-8 bg-white">
+                        <div className="w-3/4 pl-8 bg-white p-4">
                             {selectedCategory && rightMenuContent[selectedCategory] ? (
                                 <div className="grid grid-cols-2 gap-8">
                                     {rightMenuContent[selectedCategory].map((section, idx) => (
-                                        <div key={idx}>
-                                            <h3 className="text-lg font-semibold text-gray-800">{section.title}</h3>
-                                            <ul className="mt-2 space-y-2 text-gray-600">
+                                        <div key={idx} className='flex flex-col xl:gap-5'>
+                                            <h3 className="text-lg font-semibold text-gray-800 xl:text-[24px]">{section.title}</h3>
+                                            <ul className="mt-2 space-y-2 text-gray-600 xl:text-[20px] flex flex-col xl:gap-3">
                                                 {section.items.map((item, idx) => (
                                                     <li key={idx}>{item}</li>
                                                 ))}
@@ -177,9 +203,66 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
                             )}
                         </div>
                     </div>
+                    
                 )}
+                 
             </div>
+            {isMenuOpen && (
+                <>
+               <div className=' w-full h-full flex fixed ml-[-25px] sm:ml-[-30px] md:ml-[-50px] z-50 '>
+               <div className='w-[65%] h-full bg-[#EBEFF3]  p-5 flex flex-col gap-[20px] md:gap-[30px] md:p-9 z-50'>
+                <div className='flex items-center justify-between'>
+                <div className='flex gap-1 items-center '>
+                    <Image src={headerlogo} priority alt='ashyo' className='w-[15px] h-[33px] md:w-[50px] md:h-[45px] ' />
+                    <Image src={headertextimg} priority alt='ashyotext'  className='w-[70px] h-[33px] md:w-[120px] md:h-[45px]'/>
+                </div>
+                <div>
+                    <FaTimes className='w-7 h-7 md:w-14 md:h-14'  onClick={toggleMenu} />
+                </div>
+                </div>
+               <div className=" w-full p-2 flex flex-col  gap-[15px] md:gap-[40px]  text-[#545D6A] font-sans leading-[21px] ">
+      {headercategories.map((category, index) => (
+        <h2 key={index} className='text-[17px] md:text-[25px]' >{category}</h2>
+      ))}
+    </div>
+    <div className=" flex justify-between p-2  ">
+             
+             <div className="relative p-3 sm:p-7 bg-white rounded-lg md:p-9">
+             <FaBalanceScale className="w-6 h-6 text-gray-600 md:w-10 md:h-10" />
+             <span className="absolute top-[-10px] right-[-8px] bg-red-500 text-white text-xs rounded-full w-[20px] h-[20px] md:w-[30px] md:h-[30px] md:text-[15px] flex items-center justify-center">
+               2
+             </span>
+           </div>
+             <div className="relative p-3 sm:p-7 bg-white rounded-lg md:p-9">
+             <FaHeart className="w-6 h-6 text-gray-600 md:w-10 md:h-10" />
+             <span className="absolute top-[-10px]  right-[-8px] bg-red-500 text-white text-xs rounded-full w-[20px] h-[20px] md:w-[30px] md:h-[30px] md:text-[15px] flex items-center justify-center">
+               11
+             </span>
+           </div>
+       
+       
+             {/* Icon 3 */}
+             <div className="relative p-3 sm:p-7 bg-white rounded-lg md:p-9">
+             <FaShoppingBag className="w-6 h-6 text-gray-600 md:w-10 md:h-10" />
+             <span className=" absolute top-[-10px]  right-[-8px] bg-red-500 text-white text-xs rounded-full w-[20px] h-[20px] md:w-[30px] md:h-[30px] md:text-[15px] flex items-center justify-center">
+               7
+             </span>
+           </div>
+       
+             {/* Icon 4 */}
+             <div className="relative p-3 sm:p-7 bg-white rounded-lg md:p-9 ">
+               <FaUser className="w-6 h-6 text-gray-600 md:w-10 md:h-10" />
+       
+             </div>
+           </div>
+               </div>
+               <div className='w-[50%] h-full bg-white opacity-[0.7]'>
+               </div>
+               </div>
+                </>
+            )}
         </div>
+        
     )
 }
 
