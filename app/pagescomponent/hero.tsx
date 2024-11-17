@@ -50,7 +50,7 @@ const Hero = () => {
   }, [currentSlide]);
 
  
-  const goToSlide = (index: any) => {
+  const goToSlide = (index:number) => {
     setFadeClass("fade-out");
     setTimeout(() => {
       setCurrentSlide(index);
