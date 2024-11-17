@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Img from "../../public/hero2.png";
 import Img2 from "../../public/herodesktop.png";
-import iphoneimg from "../../public/iphone.png";
 import iphoneimg2 from "../../public/iphonenew.png";
 import "../cssfolder/hero.css";
 
@@ -22,49 +21,40 @@ const carouselData = [
     buttonText: "Batafsil",
     images: iphoneimg2,
     images2: iphoneimg2,
-    bgColor: "#E1F5FE", // Light blue background
+    bgColor: "#E1F5FE", 
   },
 ];
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [fadeClass, setFadeClass] = useState(""); // Track fade state
-  const [bgColor, setBgColor] = useState(carouselData[currentSlide].bgColor); // Track background color
+  const [fadeClass, setFadeClass] = useState(""); 
+  const [bgColor, setBgColor] = useState(carouselData[currentSlide].bgColor); 
 
-  // Move to the next slide
+  
   const nextSlide = () => {
-    setFadeClass("fade-out"); // Trigger fade-out animation
+    setFadeClass("fade-out"); 
     setTimeout(() => {
       const nextIndex = (currentSlide + 1) % carouselData.length;
       setCurrentSlide(nextIndex);
-      setBgColor(carouselData[nextIndex].bgColor); // Update the background color
-      setFadeClass(""); // Reset fade class after transition
-    }, 1000); // Match the fade duration
+      setBgColor(carouselData[nextIndex].bgColor); 
+      setFadeClass(""); 
+    }, 1000);
   };
 
-  // Move to the previous slide
-  const prevSlide = () => {
-    setFadeClass("fade-out"); // Trigger fade-out animation
-    setTimeout(() => {
-      const prevIndex = (currentSlide - 1 + carouselData.length) % carouselData.length;
-      setCurrentSlide(prevIndex);
-      setBgColor(carouselData[prevIndex].bgColor); // Update the background color
-      setFadeClass(""); // Reset fade class after transition
-    }, 1000); // Match the fade duration
-  };
+ 
 
-  // Auto-slide every 4 seconds
+
   useEffect(() => {
     const interval = setInterval(nextSlide, 4000);
-    return () => clearInterval(interval); // Cleanup the interval on component unmount
+    return () => clearInterval(interval); 
   }, [currentSlide]);
 
-  // Handle dot click to change slides
+ 
   const goToSlide = (index: any) => {
     setFadeClass("fade-out");
     setTimeout(() => {
       setCurrentSlide(index);
-      setBgColor(carouselData[index].bgColor); // Update the background color on dot click
+      setBgColor(carouselData[index].bgColor); 
       setFadeClass("");
     }, 1000);
   };
