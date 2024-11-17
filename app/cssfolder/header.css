@@ -44,6 +44,7 @@
 
 .resp3 {
    display: block;
+   
 }
 
 @media (max-width: 1020px) {
@@ -60,6 +61,7 @@
  @media (max-width: 1020px) {
      .resp4 {
         display: flex !important;
+    
         
      }
  }

@@ -1,0 +1,196 @@
+
+.heroimg{
+    margin-left: 170px;
+}
+@media (min-width:367px){
+    .heroimg{
+        margin-left: 180px;
+    }
+}
+@media (min-width:395px){
+    .heroimg{
+        margin-left: 200px;
+    }
+}
+@media (min-width:450px){
+    .heroimg{
+        margin-left: 220px;
+    }
+}
+@media (min-width:491px){
+    .heroimg{
+        margin-left: 250px;
+    }
+}
+@media (min-width:541px){
+    .heroimg{
+        margin-left: 300px;
+    }
+}
+@media (min-width:600px){
+    .heroimg{
+        margin-left: 350px;
+    }
+}
+@media (min-width:700px){
+    .heroimg{
+        margin-left: 400px;
+    }
+}
+@media (min-width:700px){
+    .heroimg{
+        margin-left: 420px;
+    }
+}
+@media (min-width:780px){
+    .heroimg{
+        margin-left: 450px;
+    }
+}
+@media (min-width:840px){
+    .heroimg{
+        margin-left: 500px;
+    }
+}
+@media (min-width:900px){
+    .heroimg{
+        margin-left: 550px;
+    }
+}
+@media (min-width:1030px){
+    .heroimg{
+        margin-left: 650px;
+    }
+}
+@media (min-width:1280px){
+    .heroimg{
+        margin-left: 670px;
+    }
+}
+@media (min-width:1420px){
+    .heroimg{
+        margin-left: 700px !important;
+   
+    }
+}
+@media (min-width:1538px){
+    .heroimg{
+        margin-left: 740px !important;
+   
+    }
+}
+
+@media (min-width:1630px){
+    .heroimg{
+        margin-left: 850px !important;
+      
+    }
+}
+@media (min-width:1750px){
+    .heroimg{
+        margin-left: 940px !important;
+      
+    }
+}
+@media (min-width:1890px){
+    .heroimg{
+        margin-left: 1000px !important;
+      
+    }
+}
+@media (min-width:2050px){
+    .heroimg{
+        margin-left: 1200px !important;
+      
+    }
+}
+@media (max-width:1535px){
+    .hrx{
+        display: none;
+    }
+}
+
+@media (min-width:1350px){
+    .heroimg{
+        margin-left: 635px;
+        width: 590px;
+        height: 400px;
+        object-fit: cover;
+        
+    }
+}
+
+
+
+@media (min-width:2200px){
+    .secondfather{
+       padding-left: 50px;
+    }
+    .pagination{
+        margin-right: 50px;
+    }
+}
+@media (min-width:2400px){
+    .secondfather{
+       padding-left: 120px;
+    }
+    .pagination{
+        margin-right: 120px;
+    }
+}
+@media (min-width:1160px){
+    .herotext{
+       padding-top: 150px;
+    }
+    .dot{
+        margin-right: 150px ;
+        
+    }
+}
+/* Pagination dot container */
+/* Pagination dot styles */
+.pagination {
+    position: absolute;
+    bottom: 20px; /* Adjust to position the dots */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .dot {
+    width: 10px;  /* 10px width */
+    height: 10px; /* 10px height */
+    margin: 0 5px; /* Horizontal spacing between dots */
+    background-color: rgba(0, 0, 0, 0.3);  /* Semi-transparent gray color for inactive dots */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for dot color */
+    opacity: 0.5; /* Make dots ghostly */
+  }
+  
+  .dot:hover {
+    background-color: rgba(15, 74, 151, 0.8); /* More opaque blue color on hover */
+  }
+  
+  .dot.active {
+    background-color: rgba(15, 74, 151, 1); /* Fully opaque blue color for the active dot */
+  }
+  
+  /* Wrapper to contain all the slides */
+.carousel-wrapper {
+  display: flex;
+  transition: transform 1s ease-in-out; /* Apply a smooth sliding effect */
+}
+
+/* Slide transition effect */
+.carousel-slide {
+  min-width: 100%; /* Each slide takes up the full width */
+  transition: opacity 1s ease-in-out; /* For fade transitions */
+  position: relative;
+}
+
+/* Fade out effect */
+.fade-out {
+  opacity: 0;
+}

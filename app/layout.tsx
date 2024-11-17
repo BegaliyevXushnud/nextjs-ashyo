@@ -32,7 +32,7 @@ export default function RootLayout({
       >
        <div className="flex h-screen flex-col items-center gap-3 w-[90%] m-auto">
        <Header/>
-        <main>
+        <main className="w-full">
         {children}
         </main>
         <Footer/>
