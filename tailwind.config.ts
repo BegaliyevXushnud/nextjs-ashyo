@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      letterSpacing: {
+        'custom': '0.5%', // Custom value for letter spacing
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
