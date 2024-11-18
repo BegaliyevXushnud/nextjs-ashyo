@@ -16,14 +16,18 @@ const ProductCarousel = () => {
     { id: 10, title: "Смартфон Xiaomi 12 Lite 8/128Gb Қора ", price: "6 999 999", img: naushnuk },
   ];
 
-  const carouselRef:any = useRef(null);
+  const carouselRef =useRef<HTMLDivElement | null>(null);
 
   const scrollLeft = () => {
-    carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
+    }
   };
 
   const scrollRight = () => {
-    carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
+    }
   };
 
   return (
