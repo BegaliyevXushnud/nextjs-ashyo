@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaPlus } from 'react-icons/fa'; // Import the desired icon
 import artel from "../../public/arte.svg";
 import apple from "../../public/apple.svg";
 import samsung from "../../public/samsung.svg";
@@ -29,7 +28,6 @@ const sponsor = () => {
       </div>
       <div className="div18 bg-[#006DB833] p-4 ">
         <div className='w-full h-full flex items-center justify-center '>
-          
           <Image src={vivo} alt='vivo'/>
         </div>
       </div>
@@ -40,7 +38,7 @@ const sponsor = () => {
       </div>
       <div className="div20 bg-[#0F4A97] p-4  ">
         <div className="w-full h-full flex items-center justify-center text-white">
-         <h2 className="text-white text-[24px]"> Ko'proq</h2>
+          <h2 className="text-white text-[24px]">Ko&apos;proq</h2>
         </div>
       </div>
       <div className="div21 bg-[#FF1A1F33] p-4 row-span-2 col-start-1 row-start-5 2xl:col-start-3 2xl:row-start-2"> 

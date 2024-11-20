@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 const Heropages = dynamic(() => import('./pagescomponent/hero'));
 const Sponsor = dynamic(() => import('./pagescomponent/sponsor'));
 const CardsCarousel = dynamic(() => import('./pagescomponent/cardscarousel'));
+// const Cool = dynamic(() => import('./pagescomponent/coll'));
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
      <CardsCarousel />
       <CardsCarousel />
       <CardsCarousel />
+      {/* <Cool/> */}
      </div>
       <h1>Main</h1>
     </div>

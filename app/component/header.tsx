@@ -168,7 +168,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
             </div>
             <div>
                 {isCategoryOpen && (
-                    <div className="top-16 left-0 w-full shadow-lg flex  ">
+                    <div className="top-16 left-0 w-full shadow-lg flex z-0  ">
                         {/* Left menu */}
                         <div className="w-2/4 bg-[#EBEFF3] ">
                             <ul className="space-y-6 p-0 xl:p-5">

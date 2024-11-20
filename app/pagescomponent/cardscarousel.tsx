@@ -2,7 +2,7 @@
 import { useState, useRef } from "react";
 import naushnuk from "../../public/naushnik.png";
 import Image from "next/image";
-import { FaBalanceScale, FaShoppingBag, FaAlignLeft, FaHeart } from "react-icons/fa";
+import { FaBalanceScale, FaShoppingBag, FaHeart } from "react-icons/fa";
 
 const ProductCarousel = () => {
   const [liked, setLiked] = useState<boolean[]>(new Array(10).fill(false)); // Like tugmasi holatini saqlash
@@ -23,9 +23,8 @@ const ProductCarousel = () => {
 
   const scrollLeft = () => {
     if (carouselRef.current) {
-      const firstProduct = carouselRef.current.firstElementChild as HTMLElement;
       const lastProduct = carouselRef.current.lastElementChild as HTMLElement;
-
+  
       if (carouselRef.current.scrollLeft === 0) {
         carouselRef.current.scrollTo({
           left: lastProduct.offsetLeft,
@@ -36,15 +35,17 @@ const ProductCarousel = () => {
       }
     }
   };
-
+  
   const scrollRight = () => {
     if (carouselRef.current) {
-      const firstProduct = carouselRef.current.firstElementChild as HTMLElement;
       const lastProduct = carouselRef.current.lastElementChild as HTMLElement;
-
-      if (carouselRef.current.scrollLeft + carouselRef.current.offsetWidth >= lastProduct.offsetLeft + lastProduct.offsetWidth) {
+  
+      if (
+        carouselRef.current.scrollLeft + carouselRef.current.offsetWidth >=
+        lastProduct.offsetLeft + lastProduct.offsetWidth
+      ) {
         carouselRef.current.scrollTo({
-          left: firstProduct.offsetLeft,
+          left: 0, // Bu yerda birinchi mahsulotga qaytib o'tish kerak
           behavior: "smooth",
         });
       } else {
@@ -52,6 +53,7 @@ const ProductCarousel = () => {
       }
     }
   };
+  
 
   const handleLikeClick = (index: number) => {
     const newLikedState = [...liked];
