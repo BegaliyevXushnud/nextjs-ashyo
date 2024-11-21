@@ -1,0 +1,19 @@
+
+.ts{
+    display: none ;
+}
+@media (max-width:1023px){
+    .ts{
+     display: flex;
+    }
+}
+
+.st{
+   
+    display: flex;
+}
+@media (max-width:1023px){
+    .st{
+        display: none ;
+    }
+}

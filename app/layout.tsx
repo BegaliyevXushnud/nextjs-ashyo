@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-       <div className="flex h-screen flex-col items-center gap-3 w-[90%] m-auto">
+       <div className="flex h-screen flex-col items-center gap-[20px] 2xl:gap-[40px] w-[90%] m-auto">
        <Header/>
         <main className="w-full">
         {children}
