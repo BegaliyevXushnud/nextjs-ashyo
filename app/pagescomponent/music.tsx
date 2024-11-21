@@ -13,7 +13,7 @@ const Music = () => {
       {/* Text and Button */}
       <div className="w-1/2 flex flex-col items-start justify-start pr-8  gap-[5px] lg:gap-[20px] 2xl:gap-[30px]  ">
         <h2 className="text-[12px]  md:text-2xl lg:text-[23px] lg:leading-[40px] font-semibold leading-snug  md:text-[22px] md:leading-[30px] xl:text-[30px] xl:leading-[40px] 2xl:text-[40px] 2xl:leading-[60px] ">
-          Musiqa zavqini his qilish uchun ko'p mablag' sarflash shart emas!
+        Musiqa zavqini his qilish uchun ko&#39;p mablag&#39; sarflash shart emas!
         </h2>
         <button className="mt-4 bg-white text-black py-2 px-4 rounded hover:bg-gray-300 w-[94px] h-[32] text-[11px] md:text-[13px] lg:w-[161px] lg:h-[40px] lg:text-[17px]  xl:w-[141px] xl:h-[44px] xl:text-[12px] 2xl:w-[161px] 2xl:h-[54px] 2xl:text-[16px]">
           Batafsil

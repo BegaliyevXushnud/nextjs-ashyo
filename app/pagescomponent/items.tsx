@@ -64,7 +64,7 @@ export default function Items() {
     </div>
         </div>
         <div className=" bg-[#0F4A97] col-span-2 col-start-2 2xl:col-start-5  2xl:row-start-1 row-start-6 flex items-center justify-center  rounded-[3px] text-white text-[17px] 2xl:text-[25px] font-bold ">
-          Ko'proq
+        Ko&#39;proq
         </div>
       
       </div>
