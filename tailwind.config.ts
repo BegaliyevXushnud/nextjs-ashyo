@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        'custom': '7px 0px 0px #888380',
+      },
       letterSpacing: {
         'custom': '0.5%', // Custom value for letter spacing
       },

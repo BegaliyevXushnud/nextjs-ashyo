@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tailwind yordamida scrollbarni yashirish */
+ul::-webkit-scrollbar {
+    display: none;
+}
+ul {
+  -ms-overflow-style: none; /* IE va Edge uchun */
+  scrollbar-width: none; /* Firefox uchun */
+}
