@@ -17,16 +17,24 @@ import "../cssfolder/header.css"
 const Header = () => {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [previousBackgroundColor, setPreviousBackgroundColor] = useState('');
 const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessuarlar");
 
 
     const toggleCategoryMenu = () => {
-        setIsCategoryOpen(!isCategoryOpen)
+
 
         
         if (!isCategoryOpen) {
-            setSelectedCategory("Smartfonlar va Aksessuarlar")
+            setSelectedCategory("Smartfonlar va Aksessuarlar");
+            setPreviousBackgroundColor(document.body.style.backgroundColor);
         }
+        setIsCategoryOpen(!isCategoryOpen);
+        if (!isCategoryOpen) {
+          document.body.style.backgroundColor = '#e0e0e0';
+      } else {
+          document.body.style.backgroundColor = previousBackgroundColor || ''; 
+      }
     }
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen); 
@@ -69,8 +77,8 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
     }
 
     return (
-        <div className='w-full flex flex-col  '>
-            <div className='resp  w-full h-[40px] bg-[#EBEFF3] flex items-center justify-between p-5'>
+        <div className='w-[92%] flex flex-col bg-white fixed z-50 p-3 2xl:w-[90%] 2xl:p-1'>
+            <div className='resp  w-full h-[40px] bg-[#EBEFF3] flex items-center justify-between p-5 '>
             <div className='flex gap-6'>
               <div className='flex gap-3'> 
               <Image src={locationicon} alt='location icon'/>
@@ -91,10 +99,10 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
            </div>
             </div>
             
-            <div className=' flex items-center justify-between  p-3' >
+            <div className=' flex items-center justify-between bg-white p-3' >
                 <div className='flex gap-1 items-center '>
-                    <Image src={headerlogo} priority alt='ashyo' className='xl:w-[48px] h-[48px]' />
-                    <Image src={headertextimg} priority alt='ashyotext'  className='xl:w-[112px] h-[42px]'/>
+                    <Image src={headerlogo} priority alt='ashyo' className='w-[20px] md:w-[30px]  xl:w-[48px] h-[30px] 2xl:h-[40px]' />
+                    <Image src={headertextimg} priority alt='ashyotext'  className='w-[60px] md:w-[80px] xl:w-[112px] h-[32px] 2xl:h-[40px]'/>
                 </div>
                 
                 <h2 className='resp2 text-[14px] mr-4 text-[#203F68] leading-[18px] font-sans font-semibold '>+998 (71) 123-45-67</h2>
@@ -109,7 +117,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
             <input
               type="text"
               placeholder="Что нужно сделать?"
-              className="w-[100%] flex-grow bg-transparent outline-none px-4  placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?'"
+              className="w-[100%]  flex-grow bg-transparent outline-none px-4  placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?'"
             />
             <button className="w-[48px] h-full  rounded-[5px] bg-[#134E9B] text-[#FFFFFF] text-[16px] flex items-center justify-center">
              <FaSearch/>
@@ -149,18 +157,25 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
     </div>
     <FaBars className='resp22 w-[24px] h-[24px]' onClick={toggleMenu} />
             </div>
-            <div className="resp5 w-full p-3  justify-between  text-[#545D6A] font-sans leading-[21px] ">
-      {headercategories.map((category, index) => (
-        <h2 key={index} className='xl:text-[17px] lg:text-[13px] ' >{category}</h2>
-      ))}
-    </div>
+            <div className="resp5 w-full p-3 justify-between text-[#545D6A] font-sans leading-[21px]">
+  {headercategories.map((category, index) => (
+    <h2
+      key={index}
+      className="xl:text-[16px] lg:text-[12px] cursor-pointer relative group hover:text-[#219ebc]"
+    >
+      {category}
+      <span className="absolute left-0 bottom-[-4px] w-0 h-[2px]  bg-[#219ebc] transition-all duration-300 group-hover:w-full"></span>
+    </h2>
+  ))}
+</div>
+
             <div className='resp4 flex items-center gap-2  '>
                 <button onClick={toggleCategoryMenu} className='w-[30%] h-[40px] xl:w-[15%] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[12px] font-sans flex items-center justify-center gap-4 xl:text-[15px]'>
                     Kategorya
                     <FaChevronDown className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
                 </button>
-                <div className='w-[70%] flex xl:w-[85%]'>
-                    <input type="text" className='h-full w-[100%] bg-[#EBEFF3] placeholder:text-[10px] placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?' />
+                <div className='w-[70%]  flex xl:w-[85%]'>
+                    <input type="text" className=' w-[100%] bg-[#EBEFF3] placeholder:text-[10px] placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?' />
                     <button className=' w-[40px] h-[42px] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[14px] flex items-center justify-center'>
                         <FaSearch />
                     </button>
@@ -168,7 +183,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
             </div>
             <div>
                 {isCategoryOpen && (
-                    <div className="top-16 left-0 w-full shadow-lg flex z-0  ">
+                    <div className="  w-[90%] mt-2  shadow-lg flex z-20 fixed   ">
                         {/* Left menu */}
                         <div className="w-2/4 bg-[#EBEFF3] ">
                             <ul className="space-y-6 p-0 xl:p-5">
@@ -209,7 +224,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
             </div>
             {isMenuOpen && (
                 <>
-               <div className=' w-full h-full flex fixed ml-[-25px] sm:ml-[-30px] md:ml-[-50px] z-50 '>
+               <div className=' w-full h-full flex fixed ml-[-25px] sm:ml-[-30px] md:ml-[-50px] z-30 '>
                <div className='w-[65%] h-full bg-[#EBEFF3]  p-5 flex flex-col gap-[20px] md:gap-[30px] md:p-9 z-50'>
                 <div className='flex items-center justify-between'>
                 <div className='flex gap-1 items-center '>

@@ -1,9 +1,9 @@
 "use client"
 import { useState, useRef, useEffect } from "react";
-import naushnuk from "../../public/naushnik.png";
+import naushnuk from "../../../public/naushnik.png";
 import Image from "next/image";
 import { FaBalanceScale, FaShoppingBag, FaHeart } from "react-icons/fa";
-
+import Link from 'next/link'; 
 
 const ProductCarousel = () => {
   const [liked, setLiked] = useState<boolean[]>(new Array(10).fill(false));
@@ -94,7 +94,8 @@ const ProductCarousel = () => {
 
         <div ref={carouselRef} className="flex sm:space-x-4 p-4 justify-center items-center overflow-x-hidden gap-[13px]">
           {products.map((product, index) => (
-            <div key={product.id} className="flex flex-col w-[281px] h-[300px] relative">
+            <Link href={`/product/${product.id}`} key={product.id}>
+             <div key={product.id} className="flex flex-col w-[281px] h-[300px] relative">
               {/* Image qismi */}
               <div className="w-[145px] h-[70%] bg-[#EBEFF3] rounded-lg md:w-[230px] xl:w-[240px] 2xl:w-[273px] relative hover:bg-[#d0d7df] transition-colors duration-300">
                 <Image
@@ -136,6 +137,8 @@ const ProductCarousel = () => {
                 </div>
               </div>
             </div>
+            </Link>
+           
           ))}
         </div>
 
