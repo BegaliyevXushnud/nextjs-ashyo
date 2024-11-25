@@ -77,7 +77,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
     }
 
     return (
-        <div className='w-[92%] flex flex-col bg-white fixed z-50 p-3 2xl:w-[90%] 2xl:p-1'>
+        <div className='w-[94%] sm:w-[92%] flex flex-col bg-white fixed z-50 p-3 2xl:w-[90%] 2xl:p-1'>
             <div className='resp  w-full h-[40px] bg-[#EBEFF3] flex items-center justify-between p-5 '>
             <div className='flex gap-6'>
               <div className='flex gap-3'> 
