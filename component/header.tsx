@@ -149,7 +149,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
       </span>
     </div>
 
-      {/* Icon 4 */}
+      {/* Icon 4.2 */}
       <div className="relative p-4 bg-[#EBEFF3] rounded-lg">
         <FaUser className="w-6 h-6 text-gray-600" />
 
