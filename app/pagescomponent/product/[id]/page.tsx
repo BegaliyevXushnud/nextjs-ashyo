@@ -5,8 +5,8 @@ import { useParams } from 'next/navigation';
 
 
 
-import Header from '../../../component/header';
-import Footer from '../../../component/footer';
+import Header from '../../../../component/header';
+import Footer from '../../../../component/footer';
 
 const ProductPage = () => {
   const { id } = useParams();

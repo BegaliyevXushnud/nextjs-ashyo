@@ -1,19 +1,19 @@
 "use client"
-import headerlogo from '../../public/headelogo.png'
-import headertextimg from '../../public/headerlogo2.png'
-import phoneicon from '../../public/phoneicon.svg'
-import televizoricon from '../../public/televizoricon.svg'
-import muzlatgichicon from '../../public/muzlatgichicon.svg'
-import notebookicon from '../../public/notebookicon.svg'
-import consanericon from '../../public/konsanericon.svg'
-import changyutgichicon from '../../public/changyutgichicon.svg'
-import kiryuvishmashinasicon from '../../public/kiryuvishicon.svg'
-import aksiyaicon from '../../public/aksyaicon.svg'
-import locationicon from '../../public/location.svg'
+import headerlogo from '../public/headelogo.png'
+import headertextimg from '../public/headerlogo2.png'
+import phoneicon from '../public/phoneicon.svg'
+import televizoricon from '../public/televizoricon.svg'
+import muzlatgichicon from '../public/muzlatgichicon.svg'
+import notebookicon from '../public/notebookicon.svg'
+import consanericon from '../public/konsanericon.svg'
+import changyutgichicon from '../public/changyutgichicon.svg'
+import kiryuvishmashinasicon from '../public/kiryuvishicon.svg'
+import aksiyaicon from '../public/aksyaicon.svg'
+import locationicon from '../public/location.svg'
 import Image from 'next/image'
 import { FaBars,FaTimes , FaChevronDown, FaSearch,FaBalanceScale, FaHeart, FaShoppingBag, FaUser } from 'react-icons/fa'
 import { useState } from 'react'
-import "../cssfolder/header.css"
+import "../app/cssfolder/header.css"
 const Header = () => {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -77,7 +77,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
     }
 
     return (
-        <div className='w-[94%] sm:w-[92%] flex flex-col bg-white fixed z-50 p-3 2xl:w-[90%] 2xl:p-1'>
+        <div className='w-[90%] flex flex-col bg-white fixed z-50   2xl:p-1'>
             <div className='resp  w-full h-[40px] bg-[#EBEFF3] flex items-center justify-between p-5 '>
             <div className='flex gap-6'>
               <div className='flex gap-3'> 

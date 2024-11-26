@@ -1,117 +1,16 @@
-// import React from 'react'
-// import appstore from "../../public/appstore.svg"
-// import playstore from "../../public/playmarket.svg"
-// import facebook from "../../public/facebook.svg"
-// import youtube from "../../public/youtube.svg"
-// import telegram from "../../public/telegram.svg"
-// import twiter from "../../public/twiter.svg"
-// import instagram from "../../public/instagram.svg"
-// import Image from 'next/image'
+
 import {FaComment} from 'react-icons/fa'
-import "../cssfolder/footer.css"
+import "../app/cssfolder/footer.css"
 
-// const footer = () => {
-//   const socialMedia = [
-//     { src: facebook, alt: 'facebook' },
-//     { src: youtube, alt: 'youtube' },
-//     { src: telegram, alt: 'telegram' },
-//     { src: twiter, alt: 'twiter' },
-//     { src: instagram, alt: 'instagram' }
-//   ];
-
-//   const menuItems = [
-//     "Ashyo haqida",
-//     "Foydalanish shartlari",
-//     "Maxfiylik va hafsizlik siyosati",
-//     "Mahsulotlarni va tovarlarni qaytarish siyosati",
-//     "Biz bilan aloqa"
-//   ];
-
-//   return (
-//     <div className='w-full h-auto flex flex-col  gap-5 mt-5'>
-//       <div className='flex justify-between'>
-//      <div className='flex flex-col'>
-//      <div className='flex flex-col'>
-//         <h2>Bizning ijtimoiy tarmoqlarda</h2>
-//         <div className='flex flex-wrap gap-4'>
-//             {socialMedia.map((social, index) => (
-//               <button key={index} className='w-[50px] h-[45px] bg-[#EBEFF3] flex items-center justify-center rounded-[7px]'>
-//                 <Image src={social.src} alt={social.alt} />
-//               </button>
-//             ))}
-//           </div>
-//       </div>
-//      <div>
-//      <h2 className='text-[#000000B2] text-[14px] font-semibold font-sans'>Mobil ilovani yuklab oling</h2>
-//       <div className='flex gap-3'>
-//         <div className='w-[50%] h-[44px] bg-[#EBEFF3] flex items-center justify-center gap-3'>
-//           <Image src={appstore} alt='appstore' />
-//           <h2 className='text-[12px] text-[#000000] font-serif'>App Store</h2>
-//         </div>
-//         <div className='w-[50%] h-[44px] bg-[#EBEFF3] flex items-center justify-center gap-3'>
-//           <Image src={playstore} alt='playstore' />
-//           <h2 className='text-[12px] text-[#000000] font-serif'>Google Play</h2>
-//         </div>
-//       </div>
-//      </div>
-//      </div>
-
-//       <div className='flex flex-col'>
-//       <h2 className='text-[#000000B2] text-[14px] font-semibold leading-[18px]'>Menu</h2>
-//           <ul className='flex flex-col gap-3'>
-//             {menuItems.map((item, index) => (
-//               <li key={index} className='text-[#000000B2] text-[11px] font-sans leading-[15px]'>
-//                 {item}
-//               </li>
-//             ))}
-//           </ul>
-// <div/>
-//         <div className='flex flex-col gap-5'>
-//           <h2 className='text-[#000000B2] text-[14px] font-semibold leading-[18px]'>Aloqa</h2>
-//           <h2 className='text-[#00000080] text-[16px] font-semibold leading-[18px]'>+998 (71) 123-45-67</h2>
-//           <div className='ts flex flex-wrap gap-4'>
-//             {socialMedia.map((social, index) => (
-//               <button key={index} className='w-[50px] h-[45px] bg-[#EBEFF3] flex items-center justify-center rounded-[7px]'>
-//                 <Image src={social.src} alt={social.alt} />
-//               </button>
-//             ))}
-//           </div>
-//           <div className='st flex flex-col gap-3'>
-//             <h3 className='text-[16px] text-[#000000B2] font-sans leading-[20px]'>Savolingiz bormi?</h3>
-//             <div className='w-[314px] h-[54px] bg-[#EBEFF3] flex items-center px-4 rounded-[6px]'>
-//   <input 
-//     type="text" 
-//     placeholder="O’zingiz qiziqtirgan savollarni bering"
-//     className="w-full h-full bg-transparent outline-none placeholder:text-[#0000004D]" 
-//   />
-//   <FaComment className="ml-2 text-gray-500 scale-150" />
-// </div>
-
-
-//           </div>
-//         </div>
-//       </div>
-
-//       </div>
-
-
-//       <h2 className='text-[#00000066] text-[12px] text-center font-sans leading-[15px]'>
-//         © 2022 Ashyo ro’hatdan otgan litsenzalangan bu brend.
-//       </h2>
-//     </div>
-//   )
-// }
-
-// export default footer
 
 import React from 'react'
-import appstore from "../../public/appstore.svg"
-import playstore from "../../public/playmarket.svg"
-import facebook from "../../public/facebook.svg"
-import youtube from "../../public/youtube.svg"
-import telegram from "../../public/telegram.svg"
-import twiter from "../../public/twiter.svg"
-import instagram from "../../public/instagram.svg"
+import appstore from "../public/appstore.svg"
+import playstore from "../public/playmarket.svg"
+import facebook from "../public/facebook.svg"
+import youtube from "../public/youtube.svg"
+import telegram from "../public/telegram.svg"
+import twiter from "../public/twiter.svg"
+import instagram from "../public/instagram.svg"
 import Image from 'next/image'
 const footer = () => {
   return (

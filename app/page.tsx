@@ -1,4 +1,4 @@
-
+"use client"
 import dynamic from 'next/dynamic';
 
 const Heropages = dynamic(() => import('./pagescomponent/hero'));
@@ -8,6 +8,7 @@ const Items = dynamic(() => import('./pagescomponent/items'));
 const CardsCarousel2 = dynamic(() => import('./pagescomponent/cardcarousel2'));
 const CardsCarousel3 = dynamic(() => import('./pagescomponent/product/page'));
 const Music = dynamic(() => import('./pagescomponent/music'));
+import { Posts } from './pagescomponent/fetch';
 // const Cool = dynamic(() => import('./pagescomponent/coll'));
 
 export default function Home() {
@@ -39,6 +40,7 @@ Aksiyadagi tovarlar
      Oxirgi ko’rgan mahsulotlar
 </h2>
      <CardsCarousel />
+     <Posts/>
     </div>
     </div>
     
