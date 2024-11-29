@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+
 import { useState, useEffect, useRef } from 'react';
 import { FaBalanceScale, FaHeart, FaShoppingBag } from 'react-icons/fa';
 
