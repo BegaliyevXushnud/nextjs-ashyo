@@ -1,16 +1,16 @@
 
 import {FaComment} from 'react-icons/fa'
-import "../app/cssfolder/footer.css"
+import "../cssfolder/footer.css"
 
 
 import React from 'react'
-import appstore from "../public/appstore.svg"
-import playstore from "../public/playmarket.svg"
-import facebook from "../public/facebook.svg"
-import youtube from "../public/youtube.svg"
-import telegram from "../public/telegram.svg"
-import twiter from "../public/twiter.svg"
-import instagram from "../public/instagram.svg"
+import appstore from "../../public/appstore.svg"
+import playstore from "../../public/playmarket.svg"
+import facebook from "../../public/facebook.svg"
+import youtube from "../../public/youtube.svg"
+import telegram from "../../public/telegram.svg"
+import twiter from "../../public/twiter.svg"
+import instagram from "../../public/instagram.svg"
 import Image from 'next/image'
 const footer = () => {
   return (

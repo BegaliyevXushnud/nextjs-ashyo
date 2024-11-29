@@ -1,19 +1,19 @@
 "use client"
-import headerlogo from '../public/headelogo.png'
-import headertextimg from '../public/headerlogo2.png'
-import phoneicon from '../public/phoneicon.svg'
-import televizoricon from '../public/televizoricon.svg'
-import muzlatgichicon from '../public/muzlatgichicon.svg'
-import notebookicon from '../public/notebookicon.svg'
-import consanericon from '../public/konsanericon.svg'
-import changyutgichicon from '../public/changyutgichicon.svg'
-import kiryuvishmashinasicon from '../public/kiryuvishicon.svg'
-import aksiyaicon from '../public/aksyaicon.svg'
-import locationicon from '../public/location.svg'
+import headerlogo from '../../public/headelogo.png'
+import headertextimg from '../../public/headerlogo2.png'
+import phoneicon from '../../public/phoneicon.svg'
+import televizoricon from '../../public/televizoricon.svg'
+import muzlatgichicon from '../../public/muzlatgichicon.svg'
+import notebookicon from '../../public/notebookicon.svg'
+import consanericon from '../../public/konsanericon.svg'
+import changyutgichicon from '../../public/changyutgichicon.svg'
+import kiryuvishmashinasicon from '../../public/kiryuvishicon.svg'
+import aksiyaicon from '../../public/aksyaicon.svg'
+import locationicon from '../../public/location.svg'
 import Image from 'next/image'
 import { FaBars,FaTimes , FaChevronDown, FaSearch,FaBalanceScale, FaHeart, FaShoppingBag, FaUser } from 'react-icons/fa'
 import { useState } from 'react'
-import "../app/cssfolder/header.css"
+import "../cssfolder/header.css"
 const Header = () => {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
