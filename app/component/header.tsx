@@ -175,7 +175,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
                     <FaChevronDown className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
                 </button>
                 <div className='w-[70%]  flex xl:w-[85%]'>
-                    <input type="text" className=' w-[100%] bg-[#EBEFF3] placeholder:text-[10px] placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?' />
+                    <input type="text" className=' w-[100%] h-full bg-[#EBEFF3] placeholder:text-[10px] placeholder:font-roboto placeholder:font-light placeholder:leading-[11px] p-3' placeholder='What are you looking for?' />
                     <button className=' w-[40px] h-[42px] rounded-[3px] bg-[#134E9B] text-[#FFFFFF] text-[14px] flex items-center justify-center'>
                         <FaSearch />
                     </button>
