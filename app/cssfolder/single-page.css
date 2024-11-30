@@ -1,0 +1,21 @@
+
+.res{
+    display: flex;
+}
+@media (min-width:1024px){
+    .res{
+        display: none;
+    }
+}
+.res2{
+    display: none;
+}
+@media (min-width:1024px){
+    .res2{
+        display: flex;
+    }
+}
+.transition-transform {
+    transition: transform 0.5s ease-in-out;
+  }
+  

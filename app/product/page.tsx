@@ -51,6 +51,8 @@ export default function CardsCarousel() {
       }
     }
   };
+  
+  
 
   const scrollRight = () => {
     if (carouselRef.current) {
@@ -79,9 +81,9 @@ export default function CardsCarousel() {
         ref={carouselRef}
       >
         {posts.map((product, index) => (
-          <Link href={`/product/${product.id}`} passHref key={`${product.id}-${index}`}>
-            <div className="flex flex-col w-[251px] h-[300px] relative 2xl:w-[333px] 2xl:h-[390px]">
+            <div   key={`${product.id}-${index}`} className="flex flex-col w-[251px] h-[300px] relative 2xl:w-[333px] 2xl:h-[390px]">
               <div className='w-full flex items-center justify-center h-[70%] bg-[#EBEFF3] rounded-lg md:w-[230px] xl:w-[240px] 2xl:w-[333px] relative overflow-hidden'>
+              <Link href={`/product/${product.id}`} passHref  className='flex items-center justify-center w-full h-full'>
                 <Image
                   src={product?.images?.[0] || '/apple.svg'}
                   alt={product?.name || 'Product Image'}
@@ -89,7 +91,7 @@ export default function CardsCarousel() {
                   height={430}
                   className="w-[80%] h-[80%]  hover:scale-105 transition-transform duration-300"
                 />
-              
+                </Link>
                 <button
                   className={`absolute top-2 right-2 text-2xl ${liked[index % 10] ? 'text-red-600' : 'text-white'} transition-colors`}
                   onClick={() => handleLikeClick(index % 10)}
@@ -121,7 +123,7 @@ export default function CardsCarousel() {
                 </div>
               </div>
             </div>
-          </Link>
+        
         ))}
       </div>
       <button
