@@ -4,9 +4,9 @@ import dynamic from 'next/dynamic';
 const Heropages = dynamic(() => import('./pagescomponent/hero'));
 const Sponsor = dynamic(() => import('./pagescomponent/sponsor'));
 const Items = dynamic(() => import('./pagescomponent/items'));
-
 const Music = dynamic(() => import('./pagescomponent/music'));
 const CardsCarousel = dynamic(() => import('./product/page'));
+const LikedProduct = dynamic(() => import('./pagescomponent/likedproduct'));
 export default function Home() {
   return (
     <div className='flex flex-col gap-[20px]'>
@@ -34,9 +34,9 @@ Aksiyadagi tovarlar
      <Music/>
     <div className='flex flex-col gap-2 mt-7'>
     <h2 className="font-bold text-[16px] leading-[21px] ml-4 text-[#000000] md:text-[18px] md:leading-[23px] md:ml-[23px] lg:text-[25px] lg:leading-[25px] lg:ml-[1px] 2xl:text-[32px] 2xl:leading-[60px]">
-     Oxirgi ko’rgan mahsulotlar
+     Sevimli mahsulotlar
 </h2>
-  <CardsCarousel  />
+  <LikedProduct />
    
     </div>
     </div>

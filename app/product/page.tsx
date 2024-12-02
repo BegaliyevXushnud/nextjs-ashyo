@@ -26,59 +26,37 @@ export default function CardsCarousel() {
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
 
-  // Fetching posts and likes from API
   useEffect(() => {
+    // Fetch products from the API
     async function fetchPosts() {
       const res = await fetch('https://texnoark.ilyosbekdev.uz/products/search');
       const data = await res.json();
       const products = data?.data?.products || [];
 
-      // Load liked products from localStorage
+      // Get saved liked products from localStorage
       const savedLikes = JSON.parse(localStorage.getItem('likedProducts') || '{}');
-      
-      // Update products with their liked status from localStorage
       const updatedProducts = products.map((product: Post) => ({
         ...product,
         liked: savedLikes[product.id] || false,
       }));
 
-      setPosts(updatedProducts); // Set posts with liked status
+      setPosts(updatedProducts);
+      setLikedProducts(savedLikes);
     }
+
     fetchPosts();
   }, []);
 
-  // Toggling the like state and updating localStorage
-  const toggleLike = async (productId: number) => {
-    try {
-      const response = await fetch(`https://texnoark.ilyosbekdev.uz/likes/create`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': localStorage.getItem('access_token') || '', // Tokenni yuborish
-        },
-        body: JSON.stringify({
-          product_id: productId, // Correct the field name to 'product_id' and ensure it's a number
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to like the product');
-      }
-
-      const data = await response.json();
-      console.log('Like successful:', data);
-
-      // Update liked state and persist it in localStorage
-      setLikedProducts(prev => {
-        const newLikes = { ...prev, [productId]: !prev[productId] };
-        localStorage.setItem('likedProducts', JSON.stringify(newLikes)); // Save updated liked products
-        return newLikes;
-      });
-    } catch (error) {
-      console.error('Error liking the product:', error);
-    }
+  const toggleLike = (productId: number) => {
+    const newLikedProducts = { ...likedProducts, [productId]: !likedProducts[productId] };
+    
+    // Update localStorage with the new liked products immediately
+    localStorage.setItem('likedProducts', JSON.stringify(newLikedProducts));
+  
+    // Update state to trigger re-render immediately
+    setLikedProducts(newLikedProducts);
   };
-
+  
   const scrollLeft = () => {
     if (carouselRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
