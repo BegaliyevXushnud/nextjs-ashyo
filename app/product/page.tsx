@@ -14,8 +14,12 @@ interface Post {
   isSale?: boolean;
   liked?: boolean;
 }
-const access_token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzcwLCJpYXQiOjE3MzMwMzQ2MjgsImV4cCI6MTczMzEyMTAyOH0.UxB0w6yMrPDn3AQFqAaubIPIgXchK7xzRUuFN_AMw68";
+
+if (typeof window !== "undefined") {
+  const access_token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzcwLCJpYXQiOjE3MzMwMzQ2MjgsImV4cCI6MTczMzEyMTAyOH0.UxB0w6yMrPDn3AQFqAaubIPIgXchK7xzRUuFN_AMw68";
 localStorage.setItem('access_token', access_token);
+}
+
 
 export default function CardsCarousel() {
   const [likedProducts, setLikedProducts] = useState<Record<number, boolean>>({});

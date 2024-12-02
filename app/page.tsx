@@ -7,8 +7,6 @@ const Items = dynamic(() => import('./pagescomponent/items'));
 
 const Music = dynamic(() => import('./pagescomponent/music'));
 const CardsCarousel = dynamic(() => import('./product/page'));
-
-
 export default function Home() {
   return (
     <div className='flex flex-col gap-[20px]'>
