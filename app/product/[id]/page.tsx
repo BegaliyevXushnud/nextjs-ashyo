@@ -66,7 +66,7 @@ const Page = () => {
             <AiOutlineLeft/>
           </button>
 <div className="w-4/5 bg-gray-200 flex items-center justify-center relative">
-    <Image src={product.images?.[0]} alt="dfds" width={200} height={200}  className=" sm:w-[60%] 2xl:w-[80%] h-[100%]" />
+    <Image src={product.images?.[0]} alt="dfds" width={800} height={800}  className=" sm:w-[60%] 2xl:w-[80%] h-[100%]" />
     <div
               onClick={toggleLike}
               className="absolute top-4 right-4 cursor-pointer text-2xl text-red-500"
@@ -82,16 +82,16 @@ const Page = () => {
 
 <div className="w-[20%] h-full  flex flex-col justify-between gap-2">
 <div className="w-full h-[25%] 2xl:h-[24%] bg-[#EBEFF3] flex flex-col items-center justify-center rounded-lg">
-  <Image src={product.images?.[0]} alt="dfds" width={200} height={200} className="object-cover 2xl:w-[40%] h-[90%]" /> 
+  <Image src={product.images?.[0]} alt="dfds" width={500} height={500} className=" 2xl:w-[80%] h-[90%]" /> 
 </div>
 <div className="w-full h-[25%] 2xl:h-[24%] bg-[#EBEFF3] flex flex-col items-center justify-center rounded-lg">
-  <Image src={product.images?.[0]} alt="dfds" width={200} height={200} className="object-cover 2xl:w-[40%] h-[90%]" /> 
+  <Image src={product.images?.[0]} alt="dfds" width={500} height={500} className=" 2xl:w-[80%] h-[90%]" /> 
 </div> 
 <div className="w-full h-[25%] 2xl:h-[24%] bg-[#EBEFF3] flex flex-col items-center justify-center rounded-lg">
-  <Image src={product.images?.[0]} alt="dfds" width={200} height={200} className="object-cover 2xl:w-[40%] h-[90%]" /> 
+  <Image src={product.images?.[0]} alt="dfds" width={500} height={500} className=" 2xl:w-[80%] h-[90%]" /> 
 </div>
 <div className="w-full h-[25%] 2xl:h-[24%] bg-[#EBEFF3] flex flex-col items-center justify-center rounded-lg  ">
-  <Image src={product.images?.[0]} alt="dfds" width={200} height={200} className="object-cover  2xl:w-[40%] h-[90%]" /> 
+  <Image src={product.images?.[0]} alt="dfds" width={200} height={200} className="  2xl:w-[80%] h-[90%]" /> 
 </div>
 </div>
 </div>
