@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Header from "./component/header"
 import Footer from "./component/footer"
+import Shawlayout from "./component/showlayot"
+
 import "./globals.css";
 
 const geistSans = localFont({
@@ -31,12 +33,18 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
        <div className="flex h-screen flex-col items-center gap-[50px] 2xl:gap-[40px] w-[90%]  m-auto">
-       <Header/>
+        <Shawlayout>
+        <Header/>
+        </Shawlayout>
+       
        
         <main className="w-full mt-[100px] md:mt-[160px] 2xl:mt-[180px]">
         {children}
         </main>
+        <Shawlayout>
         <Footer/>
+        </Shawlayout>
+       
        </div>
       </body>
     </html>

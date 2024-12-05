@@ -12,11 +12,15 @@ import aksiyaicon from '../../public/aksyaicon.svg'
 import locationicon from '../../public/location.svg'
 import Image from 'next/image'
 import { FaBars,FaTimes , FaChevronDown, FaSearch,FaBalanceScale, FaHeart, FaShoppingBag, FaUser } from 'react-icons/fa'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import "../cssfolder/header.css"
+import Link from 'next/link'
+
 const Header = () => {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [count, setCount] = useState(0);
+    const [add, setAdd] = useState(0);
     const [previousBackgroundColor, setPreviousBackgroundColor] = useState('');
 const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessuarlar");
 
@@ -38,7 +42,6 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
     }
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen); 
-       
     };
 
     const leftMenuCategories = [
@@ -75,7 +78,31 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
         ],
       
     }
-
+    const userId = localStorage.getItem('user_id')
+    const getLikes = async () =>{
+      const response = await fetch(`https://texnoark.ilyosbekdev.uz/likes/user/likes/${userId}`);
+      const data = await response.json();
+      console.log(data);
+      
+      setCount(data.data?.likes.length || 0)
+      return data.length;
+    }
+    useEffect(() => {
+      getLikes()
+    },[])
+    const getAddCard = async () =>{
+      const response = await fetch(`https://texnoark.ilyosbekdev.uz/carts/user/${userId}`);
+      const data = await response.json();
+      console.log(data);
+      
+      setAdd(data.data?.count || 0)
+      return data;
+    }
+    useEffect(() => {
+      getAddCard()
+    },[])
+   
+    
     return (
         <div className='w-[90%] flex flex-col bg-white fixed z-50   2xl:p-1'>
             <div className='resp  w-full h-[40px] bg-[#EBEFF3] flex items-center justify-between p-5 '>
@@ -133,27 +160,35 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
         2
       </span>
     </div>
+    <Link href="/likes">
       <div className="relative p-4 bg-[#EBEFF3] rounded-lg">
-      <FaHeart className="w-6 h-6 text-gray-600" />
+     
+      <FaHeart className="w-6 h-6 text-gray-600 cursor-pointer" />
+   
       <span className="absolute top-[-10px]  right-[-8px] bg-red-500 text-white text-xs rounded-full w-[20px] h-[20px] flex items-center justify-center">
-        11
+        {count}
       </span>
     </div>
+    </Link>
 
 
       {/* Icon 3 */}
+      <Link href="/addcard">
       <div className="relative p-4 bg-[#EBEFF3] rounded-lg">
       <FaShoppingBag className="w-6 h-6 text-gray-600" />
       <span className=" absolute top-[-10px]  right-[-8px] bg-red-500 text-white text-xs rounded-full w-[20px] h-[20px] flex items-center justify-center">
-        7
+        {add}
       </span>
     </div>
+      </Link>
 
       {/* Icon 4.2 */}
-      <div className="relative p-4 bg-[#EBEFF3] rounded-lg">
+     <Link href="/login">
+     <div className="relative p-4 bg-[#EBEFF3] rounded-lg">
         <FaUser className="w-6 h-6 text-gray-600" />
 
       </div>
+     </Link>
     </div>
     <FaBars className='resp22 w-[24px] h-[24px]' onClick={toggleMenu} />
             </div>
