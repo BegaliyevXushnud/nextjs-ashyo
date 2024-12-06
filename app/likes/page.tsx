@@ -2,9 +2,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { FaBalanceScale, FaShoppingBag } from "react-icons/fa";
-import { AiFillHeart, AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { AiFillHeart, AiOutlineLeft, AiOutlineRight,AiOutlineHeart  } from "react-icons/ai";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 type Post2 = {
   id: number;
   name: string;
@@ -20,20 +20,23 @@ type LikesType = {
 const Page = () => {
   const [like, setLike] = useState<LikesType[]>([]);
   const carouselRef = useRef<HTMLDivElement | null>(null);
-
+  const [likedProducts, setLikedProducts] = useState<Record<number, boolean>>({});
+  const router = useRouter();
   useEffect(() => {
-    const getLikes = async () => {
-      if (typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
+      const storedLikes = JSON.parse(localStorage.getItem("likedProducts") || "{}");
+      setLikedProducts(storedLikes);
+      const getLikes = async () => {
         const userId = localStorage.getItem("user_id");
-        const response = await fetch(
-          `https://texnoark.ilyosbekdev.uz/likes/user/likes/${userId}`
-        );
+        if (!userId) return;
+        
+        const response = await fetch(`https://texnoark.ilyosbekdev.uz/likes/user/likes/${userId}`);
         const data = await response.json();
         setLike(data?.data?.likes || []);
-      }
-    };
+      };
 
-    getLikes();
+      getLikes();
+    }
   }, []);
 
   const scrollLeft = () => {
@@ -62,17 +65,49 @@ const Page = () => {
       }
     }
   };
-
+  const toggleLike = async (productId: number) => {
+    const newLikedState = { ...likedProducts, [productId]: !likedProducts[productId] };
+     setLikedProducts(newLikedState);
+     localStorage.setItem("likedProducts", JSON.stringify(newLikedState));
+     const access_token = localStorage.getItem('access_token');
+     if (!access_token) {
+       console.log('Access token not found');
+       router.push('/login'); 
+       return;
+     }
+ 
+     
+     try {
+       const response = await fetch('https://texnoark.ilyosbekdev.uz/likes/create', {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json',
+           'Authorization': `Bearer ${access_token}`, 
+         },
+         body: JSON.stringify({ product_id: productId }),
+       });
+ 
+       if (!response.ok) {
+         console.log('Failed to toggle like');
+         setLikedProducts(likedProducts);
+       }
+     } catch (error) {
+       console.log('Error:', error);
+       setLikedProducts(likedProducts); 
+     }
+   };
   return (
-    <div className="relative w-full flex justify-center items-center overflow-hidden">
-      <button
+    <div className="mt-5 flex items-start flex-col " >
+       <h3 className="text-[#B6BABF] text-[14px] font-sans tracking-widest md:text-[18px] ml-4"> <Link href="/" className="hover:underline">Bosh sahifa</Link> / likes </h3>
+     <div className="relative w-full flex justify-start items-center overflow-hidden">
+     <button
         onClick={scrollLeft}
         className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white w-[44px] h-[44px] text-[22px] flex items-center justify-center p-3 text-[#545D6A] rounded-full shadow hover:bg-gray-300 z-10"
       >
         <AiOutlineLeft />
       </button>
       <div
-        className="flex sm:space-x-4 p-4 justify-center items-center gap-[13px] overflow-x-hidden"
+        className="flex sm:space-x-4 p-4 justify-start items-start gap-[13px] overflow-x-hidden "
         ref={carouselRef}
       >
         {like.length > 0 &&
@@ -95,9 +130,12 @@ const Page = () => {
                     className="w-[100%] h-[90%] object-contain hover:scale-105 transition-transform duration-300"
                   />
                 </Link>
-                <div className="absolute top-4 right-4 cursor-pointer text-2xl text-red-500">
-                  <AiFillHeart />
-                </div>
+                <div
+                onClick={() => toggleLike(product.product_id.id)}
+                className="absolute top-4 right-4 cursor-pointer text-2xl text-red-500"
+              >
+                {likedProducts[product.product_id.id] ? <AiOutlineHeart />  :  <AiFillHeart />}
+              </div>
               </div>
               <div className="flex flex-col gap-3 mt-2">
                 <h3 className="text-[#06172DB2] font-sans text-[12px] leading-[15px] md:text-[13px] lg:text-[15px] lg:leading-[20px]">
@@ -135,6 +173,7 @@ const Page = () => {
       >
         <AiOutlineRight />
       </button>
+     </div>
     </div>
   );
 };

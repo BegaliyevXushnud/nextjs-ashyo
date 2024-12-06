@@ -11,28 +11,122 @@ import "../../cssfolder/single-page.css"
 import CardsCarousel from "../page";
 const Page = () => {
   type ProductType = {
-    id: number;
+    id: string;
     name: string;
     price: string;
     images: string;
   };
-
-  const { id } = useParams();
+  type CommentType = {
+    id: string;
+    username: string;
+    text: string;
+  };
+  type RouteParams = {
+    id?:string | undefined ;
+  };
+  type CommentResponseType = {
+    id: string;
+    user_id: {
+      first_name: string;
+      last_name: string;
+    };
+    comment: string;
+  };
+  const { id } = useParams<RouteParams>();
   const [product, setProduct] = useState<ProductType | null>(null);
   const [liked, setLiked] = useState(false); 
- 
+  const [comments, setComments] = useState<CommentType[]>([]);
+  const [newComment, setNewComment] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const commentsPerPage = 5;  // Adjust this number as needed
 
   const toggleLike = () => {
     setLiked(!liked);
   };
 
- 
+  const handleNewCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewComment(e.target.value);
+  }; 
+  const fetchComments = async () => {
+    try {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        throw new Error("Access token is missing.");
+      }
+  
+      const response = await fetch(`https://texnoark.ilyosbekdev.uz/comment/product/${id}?page=${currentPage}&limit=${commentsPerPage}`, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to fetch comments");
+      }
+  
+      const data = await response.json();
+  
+      if (data?.data?.comment) {
+        const formattedComments = data.data.comment.map((comment:CommentResponseType) => ({
+          id: comment.id,
+          username: `${comment.user_id.first_name} ${comment.user_id.last_name}`,
+          text: comment.comment,
+        }));
+  
+        setComments(formattedComments);
+        setTotalPages(Math.ceil(data.data.count / commentsPerPage));  // Calculate total pages
+      } else {
+        console.log("No comments found");
+      }
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
+  };
+
+  const handleAddComment = async () => {
+    if (newComment.trim() === "") return;
+  
+    try {
+      const token = localStorage.getItem("access_token"); 
+      if (!token) {
+        throw new Error("Access token is missing.");
+      }
+  
+      const productId = id ? parseInt(id, 10) : NaN;
+
+  
+      if (isNaN(productId)) {
+        throw new Error("Invalid product ID");
+      }
+  
+      const response = await fetch('https://texnoark.ilyosbekdev.uz/comment/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          product_id: productId, 
+          comment: newComment, 
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to post comment');
+      }
+  
+      setNewComment('');
+      fetchComments(); 
+    } catch (error) {
+      console.error("Error posting comment:", error);
+    }
+  };
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetch(
-         ` https://texnoark.ilyosbekdev.uz/products/${id}`
-        );
+        const response = await fetch(`https://texnoark.ilyosbekdev.uz/products/${id}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -43,16 +137,36 @@ const Page = () => {
       }
     };
 
-    if (id) {
-      getData();
-    }
-  }, [id]);
+    getData();
+    fetchComments(); // Fetch comments when the page loads
+  }, [id]); // Ensure fetch is always called when `id` changes
 
+  useEffect(() => {
+    if (id) {
+      fetchComments();  // Fetch comments when the page or currentPage changes
+    }
+  }, [currentPage]); // Fetch comments when `currentPage` changes
+  
   if (!product) {
     return <div>Loading...</div>;
   }
- 
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  
   const monthlyPayment = parseFloat(product.price) / 10;
+
+ 
+
   
   return (
  <div className="w-full h-auto flex flex-col mt-[20px] sm:mt-[55px] md:mt-[30px] gap-3">
@@ -127,6 +241,53 @@ const Page = () => {
 </div>
 </div>
  </div>
+ <h2 className="text-[18px] font-semibold">Kommentlar</h2>
+        <div className="comment-input mt-4">
+          <input
+            type="text"
+            value={newComment}
+            onChange={handleNewCommentChange}
+            placeholder="Yangi komment qoldiring..."
+            className="w-full p-2 border rounded"
+          />
+          <button
+            onClick={handleAddComment}
+            className="mt-2 w-full p-2 bg-blue-500 text-white rounded"
+          >
+            Komment yuborish
+          </button>
+        </div>
+
+      
+        <div className="comments-list mt-4">
+          {comments.length > 0 ? (
+            comments.map(comment => (
+              <div key={comment.id} className="comment-item p-2 border-b">
+                <p className="font-semibold">{comment.username}</p>
+                <p>{comment.text}</p>
+              </div>
+            ))
+          ) : (
+            <p>No comments available</p>
+          )}
+        </div>
+        <div className="pagination flex justify-center mt-4">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className="px-4 py-2 bg-gray-300 rounded-l-md"
+          >
+            Prev
+          </button>
+          <span className="px-4 py-2">{`${currentPage} / ${totalPages}`}</span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 bg-gray-300 rounded-r-md"
+          >
+            Next
+          </button>
+        </div>
  <CardsCarousel/>
  </div>
   );
