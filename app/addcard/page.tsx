@@ -26,7 +26,7 @@ const Page = () => {
   useEffect(() => {
     const getAddCard = async () => {
       if (typeof window !== "undefined") {
-        const userId = localStorage.getItem("user_id");
+        const userId = typeof window !== "undefined"? localStorage.getItem("user_id"):""
         const response = await fetch(
           `https://texnoark.ilyosbekdev.uz/carts/user/${userId}`
         );
@@ -68,10 +68,10 @@ const Page = () => {
   };
 
   useEffect(() => {
-    const storedLikes = JSON.parse(localStorage.getItem("likedProducts") || "{}");
+    const storedLikes = typeof window !== "undefined"?  JSON.parse(localStorage.getItem("likedProducts") || "{}"): ""
     setLikedProducts(storedLikes);
 
-    const userId = localStorage.getItem("user_id");
+    const userId = typeof window !== "undefined"? localStorage.getItem("user_id"): ""
     if (!userId) {
       console.log("User ID not found");
       router.push("/login");
@@ -86,9 +86,9 @@ const Page = () => {
   const toggleLike = async (productId: number) => {
     const newLikedState = { ...likedProducts, [productId]: !likedProducts[productId] };
     setLikedProducts(newLikedState);
-    localStorage.setItem("likedProducts", JSON.stringify(newLikedState));
+    typeof window !== "undefined"?  localStorage.setItem("likedProducts", JSON.stringify(newLikedState)):""
 
-    const accessToken = localStorage.getItem("access_token");
+    const accessToken = typeof window !== "undefined"? localStorage.getItem("access_token"):""
     if (!accessToken) {
       console.log("Access token not found");
       router.push("/login");
@@ -162,7 +162,7 @@ const Page = () => {
         headers: {
           "Content-Type": "application/json",
         },
-          body: JSON.stringify({ user_id: localStorage.getItem("user_id") }),
+          body: JSON.stringify({ user_id: typeof window !== "undefined"? localStorage.getItem("user_id"):"" }),
       });
 
       if (response.ok) {

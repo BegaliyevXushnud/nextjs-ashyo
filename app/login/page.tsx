@@ -31,8 +31,8 @@ const SignIn = () => {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem("access_token", data?.data?.tokens?.access_token); // Save token
-        localStorage.setItem("user_id", data?.data?.data?.id); // Save id
+        typeof window !== "undefined"?  localStorage.setItem("access_token", data?.data?.tokens?.access_token):"" // Save token
+        typeof window !== "undefined"?   localStorage.setItem("user_id", data?.data?.data?.id):"" // Save id
         console.log(data.id);
         
         setStatusMessage("Sign-in successful!");

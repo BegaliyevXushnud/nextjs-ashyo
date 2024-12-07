@@ -23,10 +23,10 @@ export default function CardsCarousel() {
   const router = useRouter();
 
   useEffect(() => {
-    const storedLikes = JSON.parse(localStorage.getItem("likedProducts") || "{}");
+    const storedLikes = typeof window !== "undefined"? JSON.parse( localStorage.getItem("likedProducts") || "{}"):""
     setLikedProducts(storedLikes);
 
-    const user_id = localStorage.getItem('user_id');
+    const user_id = typeof window !== "undefined"? localStorage.getItem('user_id'):""
     if (!user_id) {
       console.log('User ID not found');
       router.push('/login'); 
@@ -56,22 +56,25 @@ export default function CardsCarousel() {
 
  
     async function fetchPosts() {
-      const res = await fetch('https://texnoark.ilyosbekdev.uz/products/search');
-      const data = await res.json();
-      const products = data?.data?.products || [];
-
-      
-      setPosts(products);
+      try {
+        const res = await fetch('https://texnoark.ilyosbekdev.uz/products/search');
+        const data = await res.json();
+        console.log(data); // Ma'lumotlarni konsolda tekshirish
+        const products = data?.data?.products || [];
+        setPosts(products);
+      } catch (error) {
+        console.log('Error fetching posts:', error);
+      }
     }
-
+  
     fetchPosts();
   }, [router]);
 
   const toggleLike = async (productId: number) => {
    const newLikedState = { ...likedProducts, [productId]: !likedProducts[productId] };
     setLikedProducts(newLikedState);
-    localStorage.setItem("likedProducts", JSON.stringify(newLikedState));
-    const access_token = localStorage.getItem('access_token');
+    typeof window !== "undefined"?  localStorage.setItem("likedProducts", JSON.stringify(newLikedState)):""
+    const access_token = typeof window !== "undefined"? localStorage.getItem('access_token'):""
     if (!access_token) {
       console.log('Access token not found');
       router.push('/login'); 
@@ -100,7 +103,7 @@ export default function CardsCarousel() {
   };
 
   const addToCart = async (productId: number) => {
-    const access_token = localStorage.getItem('access_token');
+    const access_token = typeof window !== "undefined"? localStorage.getItem('access_token'):""
     if (!access_token) {
       console.log('Access token not found');
       router.push('/login'); 

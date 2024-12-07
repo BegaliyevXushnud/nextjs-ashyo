@@ -68,13 +68,17 @@ const Page = () => {
   const toggleLike = async (productId: number) => {
     const newLikedState = { ...likedProducts, [productId]: !likedProducts[productId] };
      setLikedProducts(newLikedState);
-     localStorage.setItem("likedProducts", JSON.stringify(newLikedState));
-     const access_token = localStorage.getItem('access_token');
-     if (!access_token) {
-       console.log('Access token not found');
-       router.push('/login'); 
-       return;
-     }
+     
+     typeof window !== "undefined"? localStorage.setItem("likedProducts", JSON.stringify(newLikedState)) : ''
+       const access_token = typeof window !== "undefined"?    localStorage.getItem('access_token'):""
+      if (!access_token) {
+        console.log('Access token not found');
+        router.push('/login'); 
+        return;
+      }
+     
+    
+    
  
      
      try {

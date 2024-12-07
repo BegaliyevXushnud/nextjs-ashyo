@@ -10,19 +10,25 @@ import changyutgichicon from '../../public/changyutgichicon.svg'
 import kiryuvishmashinasicon from '../../public/kiryuvishicon.svg'
 import aksiyaicon from '../../public/aksyaicon.svg'
 import locationicon from '../../public/location.svg'
+
 import Image from 'next/image'
 import { FaBars,FaTimes , FaChevronDown, FaSearch,FaBalanceScale, FaHeart, FaShoppingBag, FaUser } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import "../cssfolder/header.css"
 import Link from 'next/link'
-
+export interface  Post2 {
+  id: number;
+  name: string;
+}
 const Header = () => {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [count, setCount] = useState(0);
     const [add, setAdd] = useState(0);
     const [previousBackgroundColor, setPreviousBackgroundColor] = useState('');
-const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessuarlar");
+    const [posts, setPosts] = useState<any[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState(null); 
+    const [rightMenuContent, setRightMenuContent] = useState([]);
 
 
     const toggleCategoryMenu = () => {
@@ -30,7 +36,6 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
 
         
         if (!isCategoryOpen) {
-            setSelectedCategory("Smartfonlar va Aksessuarlar");
             setPreviousBackgroundColor(document.body.style.backgroundColor);
         }
         setIsCategoryOpen(!isCategoryOpen);
@@ -45,9 +50,9 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
     };
 
     const leftMenuCategories = [
-        { icon: aksiyaicon, label: 'Aktsiyalar' },
-        { icon: phoneicon, label: 'Smartfonlar va Aksessuarlar' },
-        { icon: kiryuvishmashinasicon, label: 'Kir yuvish mashinalari' },
+        { icon:  kiryuvishmashinasicon, label: 'Aktsiyalar' },
+        { icon:aksiyaicon , label: 'Smartfonlar va Aksessuarlar' },
+        { icon: phoneicon , label: 'Kir yuvish mashinalari' },
         { icon: televizoricon, label: 'Televizorlar' },
         { icon: consanericon, label: 'Konditsionerlar' },
         { icon: notebookicon, label: 'Kompyuter va jihozlar' },
@@ -71,14 +76,8 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
         title: string;
         items: string[];
     };
-    const rightMenuContent: Record<string, CategoryContent[]>  = {
-        "Smartfonlar va Aksessuarlar": [
-            { title: "Smartfonlar", items: ["Oppo smartfonlar", "Vivo smartfonlar", "Realmi smartfonlar", "Redmi smartfonlar", "Xiaomi smartfonlar", "Artel smartfonlar", "Samsung smartfonlar", "Iphone smartfonlar", "Nokia smartfonlar"] },
-            { title: "Telefon aksessuarlari", items: ["Quvvatlagich", "Telefon g‘iloflari", "Quloqchinlar", "Xotira chiplari", "Ekran himoya oynasi"] },
-        ],
-      
-    }
-    const userId = localStorage.getItem('user_id')
+   
+    const userId = typeof window !== "undefined"? localStorage.getItem('user_id'):""
     const getLikes = async () =>{
       const response = await fetch(`https://texnoark.ilyosbekdev.uz/likes/user/likes/${userId}`);
       const data = await response.json();
@@ -102,6 +101,52 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
       getAddCard()
     },[])
    
+    useEffect(() => {
+      async function fetchPosts() {
+        const res = await fetch('https://texnoark.ilyosbekdev.uz/category/search');
+        const data = await res.json();
+        const products = Array.isArray(data?.data.categories) ? data.data.categories : [];  
+        setPosts(products);
+      }
+
+  
+      fetchPosts();
+    }, []);
+  
+    if (!Array.isArray(posts)) {
+      return <div>Loading...</div>;
+
+      
+    }
+  
+    const handleCategoryClick = async (category:any) => {
+      try {
+        // Tanlangan category nomini yangilash
+        setSelectedCategory(category.name);
+    
+        // API so'rov
+        const res = await fetch(
+          `https://texnoark.ilyosbekdev.uz/sub-category/search/${category.id}`
+        );
+    
+        // Javobni JSON formatida olish
+        const response = await res.json();
+    
+        // "data" bo'limiga kirish
+        const categories = response?.data?.subcategories;
+    
+        // Tekshirish va logga chiqarish
+        if (categories && categories.length > 0) {
+          console.log("Categories:", categories);
+          setRightMenuContent(categories); // Olingan ma'lumotni yangilash
+        } else {
+          console.log("Kategoriyalar topilmadi.");
+          setRightMenuContent([]); // Bo'sh qiymat qaytarish
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
     
     return (
         <div className='w-[90%] flex flex-col bg-white fixed z-50   2xl:p-1'>
@@ -116,6 +161,7 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
                 <h2 className='text-[#545D6A] text-[14px] leading-[18px] font-thin'>Products  </h2>
                 <h2 className='text-[#545D6A] text-[14px] leading-[18px] font-thin'>Contacts </h2>
               </div>
+             
             </div>
            <div className='flex items-center gap-5'>
            <h2 className='text-[14px] mr-4 text-[#203F68] leading-[18px] font-sans font-semibold '>+998 (71) 123-45-67</h2>
@@ -222,12 +268,18 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
                         {/* Left menu */}
                         <div className="w-2/4 bg-[#EBEFF3] ">
                             <ul className="space-y-6 p-0 xl:p-5">
-                                {leftMenuCategories.map((category, index) => (
-                                    <li key={index}
-                                        className={`flex items-center space-x-2 p-2 cursor-pointer text-[12px] sm:text-[15px]  xl:text-[20px] ${selectedCategory === category.label ? 'bg-white text-gray-700 ml-[2px]' : 'text-gray-700'}`}
-                                        onClick={() => setSelectedCategory(category.label)}>
-                                        <Image src={category.icon} alt={`${category.label} icon`} />
-                                        <span>{category.label}</span>
+                            {posts.map((category, index) => (
+                                    <li
+                                        key={index}
+                                        className="flex items-center gap-3 p-2 cursor-pointer hover:bg-gray-200"
+                                        onClick={() => handleCategoryClick(category)}
+                                    >
+                                        <Image
+                                            src={leftMenuCategories[index]?.icon || phoneicon} 
+                                            alt={category.name}
+                                            className="w-6 h-6"
+                                        />
+                                        <span className="text-[#545D6A] text-[14px] font-sans">{category.name}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -235,23 +287,29 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
 
                         {/* Right menu */}
                         <div className="w-3/4 pl-8 bg-white p-4">
-                            {selectedCategory && rightMenuContent[selectedCategory] ? (
-                                <div className="grid grid-cols-2 gap-8">
-                                    {rightMenuContent[selectedCategory].map((section, idx) => (
-                                        <div key={idx} className='flex flex-col xl:gap-5'>
-                                            <h3 className="text-[13px] sm:text-[15px] md:text-[18px] font-semibold text-gray-800 xl:text-[24px]">{section.title}</h3>
-                                            <ul className="mt-2 space-y-2 text-gray-600 text-[11px] sm:text-[14px] md:text-[16px] xl:text-[20px] flex flex-col xl:gap-3">
-                                                {section.items.map((item, idx) => (
-                                                    <li key={idx}>{item}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    ))}
-                                </div>
+        {rightMenuContent.length > 0 ? (
+          <div className="grid grid-cols-2 gap-8">
+            <div className="w-2/4 bg-white p-5">
+                            {rightMenuContent.length > 0 ? (
+                                rightMenuContent.map((item:any, index) => (
+                                    <div
+                                        key={index}
+                                        className="text-[#545D6A] text-[14px] font-sans py-2 border-b border-gray-300 cursor-pointer hover:text-blue-600"
+                                    >
+                                        {item.title || item.name || 'Unnamed Item'}
+                                    </div>
+                                ))
                             ) : (
-                                <p className="text-gray-600"> kategoriya mavzud emas</p>
+                                <p className="text-gray-500 text-sm">Please select a category to see items.</p>
                             )}
                         </div>
+          </div>
+        ) : (
+          <p className="text-gray-600">
+            Kategoriya bo‘yicha hech qanday maʼlumot yo‘q
+          </p>
+        )}
+      </div>
                     </div>
                     
                 )}
@@ -308,9 +366,11 @@ const [selectedCategory, setSelectedCategory] = useState("Smartfonlar va Aksessu
                </div>
                <div className='w-[50%] h-full bg-white opacity-[0.7]'>
                </div>
+              
                </div>
                 </>
             )}
+          
         </div>
         
     )
