@@ -23,43 +23,39 @@ export default function CardsCarousel() {
   const router = useRouter();
 
   useEffect(() => {
-    const storedLikes = typeof window !== "undefined"? JSON.parse( localStorage.getItem("likedProducts") || "{}"):""
+    const storedLikes = typeof window !== "undefined"? JSON.parse(localStorage.getItem("likedProducts") || "{}") : "";
     setLikedProducts(storedLikes);
-
-    const user_id = typeof window !== "undefined"? localStorage.getItem('user_id'):""
-    if (!user_id) {
-      console.log('User ID not found');
-      router.push('/login'); 
-      return;
-    }
 
    
     async function fetchLikedProducts() {
       try {
+        const user_id = typeof window !== "undefined" ? localStorage.getItem('user_id') : "";
+        if (!user_id) {
+          console.log('User ID not found');
+          return;
+        }
+  
         const res = await fetch(`https://texnoark.ilyosbekdev.uz/likes/user/likes/${user_id}`);
         const data = await res.json();
-        console.log(data, "data");
         
         const likedProductIds = data?.data?.map((like: { product_id: number }) => like.product_id) || [];
         const likedState: Record<number, boolean> = {};
         likedProductIds.forEach((productId:number) => {
           likedState[productId] = true;
         });
-
+  
         setLikedProducts(likedState);
       } catch (error) {
         console.log('Error fetching liked products:', error);
       }
     }
-
-    fetchLikedProducts();
+  
 
  
     async function fetchPosts() {
       try {
         const res = await fetch('https://texnoark.ilyosbekdev.uz/products/search');
         const data = await res.json();
-        console.log(data); // Ma'lumotlarni konsolda tekshirish
         const products = data?.data?.products || [];
         setPosts(products);
       } catch (error) {
@@ -67,21 +63,22 @@ export default function CardsCarousel() {
       }
     }
   
+    fetchLikedProducts();
     fetchPosts();
-  }, [router]);
-
+  }, []);
+  
   const toggleLike = async (productId: number) => {
-   const newLikedState = { ...likedProducts, [productId]: !likedProducts[productId] };
-    setLikedProducts(newLikedState);
-    typeof window !== "undefined"?  localStorage.setItem("likedProducts", JSON.stringify(newLikedState)):""
-    const access_token = typeof window !== "undefined"? localStorage.getItem('access_token'):""
+    const access_token = typeof window !== "undefined" ? localStorage.getItem('access_token') : "";
     if (!access_token) {
       console.log('Access token not found');
       router.push('/login'); 
       return;
     }
-
-    
+  
+    const newLikedState = { ...likedProducts, [productId]: !likedProducts[productId] };
+    setLikedProducts(newLikedState);
+    localStorage.setItem("likedProducts", JSON.stringify(newLikedState));
+  
     try {
       const response = await fetch('https://texnoark.ilyosbekdev.uz/likes/create', {
         method: 'POST',
@@ -91,7 +88,7 @@ export default function CardsCarousel() {
         },
         body: JSON.stringify({ product_id: productId }),
       });
-
+  
       if (!response.ok) {
         console.log('Failed to toggle like');
         setLikedProducts(likedProducts);
@@ -101,7 +98,6 @@ export default function CardsCarousel() {
       setLikedProducts(likedProducts); 
     }
   };
-
   const addToCart = async (productId: number) => {
     const access_token = typeof window !== "undefined"? localStorage.getItem('access_token'):""
     if (!access_token) {
